@@ -6,7 +6,7 @@ VALUES
 ('The Dark Knight'),
 ('12 Angry Men');
 
-INSERT INTO reviews (review)
+INSERT INTO reviews (review, movies_id)
 VALUES 
 ('Good', 1),
 ('would watch again', 1),
