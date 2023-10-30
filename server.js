@@ -41,19 +41,24 @@ const db = mysql.createConnection(
 
   app.post('/api/add-movie', (req, res) => {
     let movieValue = req.body.title;
-    db.query(`INSERT INTO movies (name) VALUE ?`, movieValue, function (err, results) {
+    db.query(`INSERT INTO movies (title) VALUES (?)`, [movieValue], function (err, results) {
+      if (err) {console.log(err);}
       console.log(results)
+      res.json(results)
     });
+    
         
   })
 
   app.put('/api/review/:id', (req, res) => {
     let updateReview = req.body.review;
-    db.query(`INSERT INTO reviews (name)) VALUE ?`, updateReview, (err, result) => {
+    db.query(`INSERT INTO reviews (title)) VALUES ?`, updateReview, (err, result) => {
       if (err) {
         console.log(err);
+  
       }
-      console.log(result);
+      // console.log(result);
+      res.json(result)
     });
   })
 
@@ -62,8 +67,10 @@ const db = mysql.createConnection(
     db.query(`DELETE FROM movies WHERE id = ?`, deleteMovie, (err, result) => {
       if (err) {
         console.log(err);
+       
       }
       console.log(result);
+      res.json(result)
     });
   })
 
